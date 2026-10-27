@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://c5aavpupihj78"]
+
+[ext_resource type="Script" uid="uid://uc706bhvr0qk" path="res://Scripts/Core/Enemy.gd" id="1_bgtiw"]
+[ext_resource type="Script" uid="uid://2ot2gk4ce1sq" path="res://Scripts/Components (Data)/HealthComponent.gd" id="2_d3a5y"]
+[ext_resource type="Texture2D" uid="uid://b3llpb6qh3uax" path="res://icon.svg" id="2_mt4o1"]
+[ext_resource type="Script" uid="uid://cu73mtb13446t" path="res://Scripts/Core/Attack.gd" id="4_mt4o1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_omjkn"]
+radius = 19.104973
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1763832684]
+script = ExtResource("1_bgtiw")
+metadata/_custom_type_script = "uid://uc706bhvr0qk"
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=987712020]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_mt4o1")
+
+[node name="Health" type="Node" parent="." unique_id=254047916]
+script = ExtResource("2_d3a5y")
+metadata/_custom_type_script = "uid://2ot2gk4ce1sq"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=983849442]
+shape = SubResource("CircleShape2D_omjkn")
+
+[node name="Attack" type="Node2D" parent="." unique_id=1493734982]
+script = ExtResource("4_mt4o1")
+attack_range = 20.0
+metadata/_custom_type_script = "uid://cu73mtb13446t"
+
+[node name="Cooldown" type="Timer" parent="Attack" unique_id=1682052714]
+wait_time = 0.25
+one_shot = true

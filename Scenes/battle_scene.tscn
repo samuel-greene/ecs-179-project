@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://b1xyi1ku0anev"]
+
+[ext_resource type="PackedScene" uid="uid://bogcuvukw48ty" path="res://Scenes/Templates/Tower.tscn" id="1_b25br"]
+[ext_resource type="PackedScene" uid="uid://dlfg0b1j8uyi8" path="res://Scenes/Environment.tscn" id="2_hdvqd"]
+[ext_resource type="PackedScene" uid="uid://c5aavpupihj78" path="res://Scenes/Templates/Enemy.tscn" id="3_anwxn"]
+[ext_resource type="PackedScene" uid="uid://dl6non4c18ytl" path="res://Scenes/Templates/Unit.tscn" id="4_e5vbs"]
+
+[node name="BattleScene" type="Node2D" unique_id=61709342]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2053255307]
+
+[node name="MainTower" parent="." unique_id=155742120 instance=ExtResource("1_b25br")]
+
+[node name="Environment" parent="." unique_id=1168968317 instance=ExtResource("2_hdvqd")]
+
+[node name="Enemy" parent="." unique_id=1169492943 instance=ExtResource("3_anwxn")]
+position = Vector2(245, -153)
+
+[node name="Unit" parent="." unique_id=1216881095 instance=ExtResource("4_e5vbs")]
+position = Vector2(198, 46)
