@@ -1,9 +1,9 @@
 extends CharacterBody2D
-class_name Unit
+class_name Friendly
 
 @export var move_speed: float = 170.0
 
-@onready var attack: Attack = $Attack
+@onready var attack: MeleeAttack = $MeleeAttack
 @onready var health: Health = $Health
 
 var target: Enemy

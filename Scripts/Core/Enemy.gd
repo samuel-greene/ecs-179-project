@@ -3,7 +3,7 @@ class_name Enemy
 
 @export var move_speed: float = 150.0
 
-@onready var attack: Attack = $Attack
+@onready var attack: MeleeAttack = $MeleeAttack
 @onready var health: Health = $Health
 
 var target: Node2D

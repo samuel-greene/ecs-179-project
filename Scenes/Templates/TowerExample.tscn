@@ -3,7 +3,8 @@
 [ext_resource type="Script" uid="uid://443yjrotjii5" path="res://Scripts/Core/Tower.gd" id="1_uffha"]
 [ext_resource type="Script" uid="uid://2ot2gk4ce1sq" path="res://Scripts/Components (Data)/HealthComponent.gd" id="2_uffha"]
 [ext_resource type="Texture2D" uid="uid://b3llpb6qh3uax" path="res://icon.svg" id="3_x6wet"]
-[ext_resource type="Script" uid="uid://cu73mtb13446t" path="res://Scripts/Core/Attack.gd" id="4_8dx05"]
+[ext_resource type="Script" uid="uid://cc45cl32kgryo" path="res://Scripts/Core/RangeAttack.gd" id="4_uffha"]
+[ext_resource type="PackedScene" uid="uid://dy6kwk5r8k528" path="res://Scenes/Templates/ProjectileExample.tscn" id="5_8dx05"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h782m"]
 size = Vector2(124, 124)
@@ -24,10 +25,7 @@ metadata/_custom_type_script = "uid://2ot2gk4ce1sq"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=983849442]
 shape = SubResource("RectangleShape2D_h782m")
 
-[node name="Attack" type="Node2D" parent="." unique_id=1493734982]
-script = ExtResource("4_8dx05")
-attack_range = 500.0
-metadata/_custom_type_script = "uid://cu73mtb13446t"
-
-[node name="Cooldown" type="Timer" parent="Attack" unique_id=1682052714]
-one_shot = true
+[node name="RangeAttack" type="Node2D" parent="." unique_id=1896199046]
+script = ExtResource("4_uffha")
+projectile = ExtResource("5_8dx05")
+metadata/_custom_type_script = "uid://cc45cl32kgryo"

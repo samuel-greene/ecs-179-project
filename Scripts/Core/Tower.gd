@@ -1,8 +1,10 @@
 extends StaticBody2D
 class_name Tower
 
+@export var size: float = 10.0
+
 @onready var health: Health = $Health
-@onready var attack: Attack = $Attack
+@onready var attack: RangeAttack = $RangeAttack
 
 var target: Enemy
 

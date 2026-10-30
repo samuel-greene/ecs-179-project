@@ -1,13 +1,17 @@
 extends Node2D
-class_name Attack
+class_name MeleeAttack
 
 ## Damage done by a single attack
 @export var damage: float = 5.0
 ## Range at which the attack can be performed
 @export var attack_range: float = 30.0
-## Cooldown before next attack can be performed.
-## Every Attack scene owns a child Timer named "Cooldown".
-@onready var cooldown: Timer = $Cooldown
+## Cooldown before next attack can be performed
+@export var cooldown_time: float = 1.0
+
+var cooldown_remaining: float = 0.0
+
+func _physics_process(delta: float) -> void:
+	cooldown_remaining = maxf(0.0, cooldown_remaining - delta)
 
 ## Returns true when any point on the target's collision shape is in attack range.
 func is_target_in_range(target: Node2D) -> bool:
@@ -39,14 +43,14 @@ func _get_closest_point_on_shape(point: Vector2, shape: Shape2D) -> Vector2:
 	return Vector2.ZERO
 
 func execute_attack(target: Node2D) -> void:
-	var target_health_component = target.get_node_or_null("Health")
-	
-	if not cooldown.is_stopped():
+	if cooldown_remaining > 0.0:
 		return
+	var target_health_component = target.get_node_or_null("Health")
+
 	if target_health_component:
 		var health = target_health_component as Health
 		health.take_damage(damage);
-		cooldown.start()
+		cooldown_remaining = cooldown_time
 		#print("Attacking: " + target.name)
 	else:
 		push_warning("Target " + target.name + " has no valid Health component")
