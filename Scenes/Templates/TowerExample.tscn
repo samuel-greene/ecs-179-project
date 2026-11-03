@@ -16,10 +16,11 @@ metadata/_custom_type_script = "uid://443yjrotjii5"
 [node name="Icon" type="Sprite2D" parent="." unique_id=987712020]
 texture = ExtResource("3_x6wet")
 
-[node name="Health" type="Node" parent="." unique_id=254047916]
+[node name="Health" type="Node" parent="." unique_id=254047916 node_paths=PackedStringArray("health_bar")]
 script = ExtResource("2_uffha")
 max_health = 50.0
 starting_health = 50.0
+health_bar = NodePath("../TowerProgressBar")
 metadata/_custom_type_script = "uid://2ot2gk4ce1sq"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=983849442]
@@ -29,3 +30,12 @@ shape = SubResource("RectangleShape2D_h782m")
 script = ExtResource("4_uffha")
 projectile = ExtResource("5_8dx05")
 metadata/_custom_type_script = "uid://cc45cl32kgryo"
+
+[node name="TowerProgressBar" type="ProgressBar" parent="." unique_id=2104084913]
+unique_name_in_owner = true
+modulate = Color(0, 0.70168215, 0.29906702, 1)
+offset_left = -63.0
+offset_top = 70.0
+offset_right = 64.0
+offset_bottom = 81.0
+show_percentage = false

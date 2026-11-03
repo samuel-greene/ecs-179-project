@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Enemy
 
 @export var move_speed: float = 150.0
+@export var coin_scene: PackedScene
 
 @onready var attack: MeleeAttack = $MeleeAttack
 @onready var health: Health = $Health
@@ -13,6 +14,10 @@ func _ready() -> void:
 	health.died.connect(_on_health_died)
 
 func _on_health_died() -> void:
+	var coin = coin_scene.instantiate()
+	get_tree().current_scene.add_child(coin)
+	coin.global_position = global_position
+	
 	queue_free()
 
 func _physics_process(delta: float) -> void:

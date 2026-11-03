@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://c5aavpupihj78"]
 
 [ext_resource type="Script" uid="uid://uc706bhvr0qk" path="res://Scripts/Core/Enemy.gd" id="1_bgtiw"]
+[ext_resource type="PackedScene" uid="uid://cf15at0rwcvix" path="res://Scenes/Templates/Coin.tscn" id="2_b2xm2"]
 [ext_resource type="Script" uid="uid://2ot2gk4ce1sq" path="res://Scripts/Components (Data)/HealthComponent.gd" id="2_d3a5y"]
-[ext_resource type="Texture2D" uid="uid://b3llpb6qh3uax" path="res://icon.svg" id="2_mt4o1"]
+[ext_resource type="Texture2D" uid="uid://cc1v70qyw16wq" path="res://Sprites/alien_placeholder.png" id="2_rv5qc"]
 [ext_resource type="Script" uid="uid://cu73mtb13446t" path="res://Scripts/Core/MeleeAttack.gd" id="4_mt4o1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_omjkn"]
@@ -10,17 +11,20 @@ radius = 19.104973
 
 [node name="Enemy" type="CharacterBody2D" unique_id=1763832684]
 script = ExtResource("1_bgtiw")
+coin_scene = ExtResource("2_b2xm2")
 metadata/_custom_type_script = "uid://uc706bhvr0qk"
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=987712020]
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("2_mt4o1")
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_rv5qc")
 
-[node name="Health" type="Node" parent="." unique_id=254047916]
+[node name="Health" type="Node" parent="." unique_id=254047916 node_paths=PackedStringArray("health_bar")]
 script = ExtResource("2_d3a5y")
+health_bar = NodePath("../ProgressBar")
 metadata/_custom_type_script = "uid://2ot2gk4ce1sq"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=983849442]
+visible = false
 shape = SubResource("CircleShape2D_omjkn")
 
 [node name="MeleeAttack" type="Node2D" parent="." unique_id=1493734982]
@@ -31,3 +35,11 @@ metadata/_custom_type_script = "uid://cu73mtb13446t"
 [node name="Cooldown" type="Timer" parent="MeleeAttack" unique_id=1682052714]
 wait_time = 0.25
 one_shot = true
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1599419165]
+modulate = Color(0, 0.7189554, 0.34405744, 1)
+offset_left = -20.0
+offset_top = -52.0
+offset_right = 20.0
+offset_bottom = -48.0
+show_percentage = false
