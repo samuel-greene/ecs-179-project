@@ -1,5 +1,7 @@
 extends PanelContainer
 
+signal buy_pressed(item_price: int)
+
 var item_name: String
 var item_price: int
 var item_description: String
@@ -10,7 +12,7 @@ var item_type: int
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	$VBoxContainer/BuyButton.pressed.connect(item_bought)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -28,3 +30,7 @@ func setup(i_name:String, description:String, price: int, icon: Texture2D, type:
 	$VBoxContainer/Name.text = item_name
 	$VBoxContainer/Price.text = str(item_price) + " Coins"
 	$VBoxContainer/Description.text = item_description
+	
+func item_bought():
+	buy_pressed.emit(item_price)
+	

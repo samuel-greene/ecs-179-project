@@ -38,4 +38,6 @@ horizontal_alignment = 1
 [node name="BuyButton" type="Button" parent="VBoxContainer" unique_id=1394539156]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
+toggle_mode = true
+button_pressed = true
 text = "Buy"

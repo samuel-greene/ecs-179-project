@@ -40,7 +40,7 @@ func add_item(item_name: String, item_description: String, price: int, icon: Tex
 	var item = SHOP_ITEM.instantiate()
 	$ShopLayout/Content.add_child(item)
 	item.setup(item_name, item_description, price, icon, item_type)
-		
+	item.buy_pressed.connect(item_bought)
 	
 # updates the number of coins the user has
 func update_currency():
@@ -64,3 +64,9 @@ func upgrade_button_pressed() -> void:
 func items_button_pressed() -> void:
 	filter_items(0)
 	
+func item_bought(price: int) -> void:
+	if currency >= price:
+		currency -= price
+		update_currency()
+	else:
+		print("Purchase unsuccessful")
