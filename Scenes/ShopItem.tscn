@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bae50s3a6je0f"]
+
+[ext_resource type="Script" uid="uid://do6y3m6y0fvx3" path="res://Scripts/Components (Data)/ShopItem.gd" id="1_b4qxo"]
+
+[node name="ShopItem" type="PanelContainer" unique_id=1559177602]
+custom_minimum_size = Vector2(180, 200)
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_b4qxo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1564872810]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer" unique_id=2073689316]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="VBoxContainer/CenterContainer" unique_id=140811621]
+custom_minimum_size = Vector2(100, 100)
+custom_maximum_size = Vector2(100, 100)
+layout_mode = 2
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="VBoxContainer" unique_id=14526799]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="VBoxContainer" unique_id=578293995]
+visible = false
+layout_mode = 2
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Price" type="Label" parent="VBoxContainer" unique_id=1582767053]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="BuyButton" type="Button" parent="VBoxContainer" unique_id=1394539156]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 2
+text = "Buy"

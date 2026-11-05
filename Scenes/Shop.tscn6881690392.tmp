@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://7hx6xo0lyp0b"]
+
+[ext_resource type="Script" uid="uid://dld8y1bo5s1by" path="res://Scripts/Components (Data)/Shop.gd" id="1_kjfcx"]
+
+[node name="Shop" type="Control" unique_id=756572613]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kjfcx")
+
+[node name="Background" type="ColorRect" parent="." unique_id=297229242]
+modulate = Color(0.5553293, 0.5553293, 0.5553293, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.16062862, 0.16062862, 0.16062862, 1)
+
+[node name="ShopLayout" type="VBoxContainer" parent="." unique_id=1809422675]
+layout_mode = 0
+offset_left = 439.0
+offset_top = 5.0
+offset_right = 751.0
+offset_bottom = 89.0
+
+[node name="header" type="HBoxContainer" parent="ShopLayout" unique_id=1735023193]
+layout_mode = 2
+
+[node name="ShopTitle" type="Label" parent="ShopLayout/header" unique_id=1365025145]
+layout_mode = 2
+text = "Shop"
+
+[node name="VSeparator" type="VSeparator" parent="ShopLayout/header" unique_id=591788249]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="Currency" type="Label" parent="ShopLayout/header" unique_id=1965105472]
+layout_mode = 2
+text = "Currency"
+horizontal_alignment = 2
+
+[node name="HSeparator" type="HSeparator" parent="ShopLayout" unique_id=1250776315]
+layout_mode = 2
+
+[node name="Categories" type="HBoxContainer" parent="ShopLayout" unique_id=1376303382]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="ItemsButton" type="Button" parent="ShopLayout/Categories" unique_id=285292546]
+custom_minimum_size = Vector2(150, 45)
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+text = "Items"
+
+[node name="UpgradesButton" type="Button" parent="ShopLayout/Categories" unique_id=883306675]
+custom_minimum_size = Vector2(150, 45)
+layout_mode = 2
+toggle_mode = true
+button_pressed = true
+text = "Upgrades"
+
+[node name="Content" type="GridContainer" parent="ShopLayout" unique_id=1238203365]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 15
+theme_override_constants/v_separation = 15
+columns = 3
