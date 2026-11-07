@@ -6,10 +6,11 @@ class_name Tower
 @onready var health: Health = $Health
 @onready var attack: RangeAttack = $RangeAttack
 
-var target: Enemy
+var target: Alien
 
 func _ready() -> void:
 	add_to_group("friendlies")
+	add_to_group("tower")
 	health.died.connect(_on_health_died)
 
 func _on_health_died() -> void:

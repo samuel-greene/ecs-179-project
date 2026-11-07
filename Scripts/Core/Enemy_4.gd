@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Enemy
+class_name Enemy4
 
 @export var move_speed: float = 150.0
 @export var coin_scene: PackedScene

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c5aavpupihj78"]
 
-[ext_resource type="Script" uid="uid://uc706bhvr0qk" path="res://Scripts/Core/Enemy.gd" id="1_bgtiw"]
+[ext_resource type="Script" uid="uid://uc706bhvr0qk" path="res://Scripts/Core/Alien.gd" id="1_bgtiw"]
 [ext_resource type="PackedScene" uid="uid://cf15at0rwcvix" path="res://Scenes/Templates/Coin.tscn" id="2_b2xm2"]
 [ext_resource type="Script" uid="uid://2ot2gk4ce1sq" path="res://Scripts/Components (Data)/HealthComponent.gd" id="2_d3a5y"]
 [ext_resource type="Texture2D" uid="uid://cc1v70qyw16wq" path="res://Sprites/alien_placeholder.png" id="2_rv5qc"]
