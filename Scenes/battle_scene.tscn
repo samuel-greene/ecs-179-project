@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://bogcuvukw48ty" path="res://Scenes/Templates/TowerExample.tscn" id="1_b25br"]
 [ext_resource type="PackedScene" uid="uid://dlfg0b1j8uyi8" path="res://Scenes/Templates/EnvironmentExample.tscn" id="2_hdvqd"]
-[ext_resource type="PackedScene" uid="uid://c5aavpupihj78" path="res://Scenes/Templates/EnemyExample.tscn" id="3_anwxn"]
-[ext_resource type="PackedScene" uid="uid://dl6non4c18ytl" path="res://Scenes/Templates/FriendlyExample.tscn" id="4_e5vbs"]
+[ext_resource type="PackedScene" uid="uid://vg7n6673hkjq" path="res://Scenes/Enemies/Alien_v1.tscn" id="3_e5vbs"]
+[ext_resource type="PackedScene" uid="uid://d3ws40m8gf6yt" path="res://Scenes/Friendlies/Friend_v1.tscn" id="4_3gnqe"]
 
 [node name="BattleScene" type="Node2D" unique_id=61709342]
 
@@ -11,13 +11,13 @@
 
 [node name="EnvironmentExample" parent="." unique_id=1168968317 instance=ExtResource("2_hdvqd")]
 
-[node name="EnemyExample" parent="." unique_id=1763832684 instance=ExtResource("3_anwxn")]
-position = Vector2(277, -166)
-
-[node name="FriendlyExample" parent="." unique_id=1216881095 instance=ExtResource("4_e5vbs")]
-position = Vector2(193, 58)
-
 [node name="TowerExample" parent="." unique_id=1624496758 instance=ExtResource("1_b25br")]
 
-[node name="Enemy" parent="." unique_id=997709984 instance=ExtResource("3_anwxn")]
-position = Vector2(-483, -173)
+[node name="Enemy" parent="." unique_id=1763832684 instance=ExtResource("3_e5vbs")]
+position = Vector2(-395, -187)
+
+[node name="Enemy2" parent="." unique_id=2142701411 instance=ExtResource("3_e5vbs")]
+position = Vector2(412, -107)
+
+[node name="Friendly" parent="." unique_id=1658742211 instance=ExtResource("4_3gnqe")]
+position = Vector2(3, -200)
