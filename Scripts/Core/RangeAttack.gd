@@ -1,52 +1,40 @@
-extends Node2D
+extends Attack
 class_name RangeAttack
 
-## Damage done by a single attack
-@export var damage: float = 5.0
-## Range at which the attack can be performed
-@export var attack_range: float = 300.0
-## Cooldown before next attack can be performed
-@export var cooldown_time: float = 1.0
-## Range attack projectile speed
 @export var projectile_speed: float = 1000.0
-## Range attack projectile
 @export var projectile: PackedScene
-## The group to target
 @export var target_group: StringName = &"enemies"
 
-var cooldown_remaining: float = 0.0
 
-func _physics_process(delta: float) -> void:
-	cooldown_remaining = maxf(0.0, cooldown_remaining - delta)
+func _init() -> void:
+	attack_range = 300.0
 
-## Returns true when any point on the target's collision shape is in attack range.
-func is_target_in_range(target: Node2D) -> bool:
-	var collision_shape := target.get_node_or_null("CollisionShape2D") as CollisionShape2D
-	if collision_shape == null or collision_shape.shape == null:
-		return global_position.distance_to(target.global_position) <= attack_range
 
-	var point_in_shape_space := collision_shape.to_local(global_position)
-	var closest_point := _get_closest_point_on_shape(point_in_shape_space, collision_shape.shape)
-	var point_in_world_space := collision_shape.to_global(closest_point)
-	return global_position.distance_to(point_in_world_space) <= attack_range
+func _perform_attack(target: Node2D) -> bool:
+	if projectile == null:
+		push_warning("RangeAttack has no projectile scene.")
+		return false
 
-func _get_closest_point_on_shape(point: Vector2, shape: Shape2D) -> Vector2:
-	if shape is CircleShape2D:
-		var circle := shape as CircleShape2D
-		if point.length() <= circle.radius:
-			return point
-		return point.normalized() * circle.radius
+	var new_projectile := projectile.instantiate() as Projectile
+	if new_projectile == null:
+		push_warning("Projectile scene must have a Projectile root.")
+		return false
 
-	if shape is RectangleShape2D:
-		var rectangle := shape as RectangleShape2D
-		var half_size := rectangle.size * 0.5
-		return Vector2(
-			clampf(point.x, -half_size.x, half_size.x),
-			clampf(point.y, -half_size.y, half_size.y)
-		)
+	var target_velocity: Vector2 = target.velocity
+	var aim_point := get_intercept_point(
+		global_position,
+		target.global_position,
+		target_velocity
+	)
 
-	# Targets without a supported shape use their origin as a safe fallback.
-	return Vector2.ZERO
+	get_tree().current_scene.add_child(new_projectile)
+	new_projectile.global_position = global_position
+	new_projectile.speed = projectile_speed
+	new_projectile.damage = damage
+	new_projectile.target_group = target_group
+	new_projectile.fire(global_position.direction_to(aim_point))
+	return true
+
 
 ## Thank you ChatGPT
 func get_intercept_point(
@@ -78,22 +66,3 @@ func get_intercept_point(
 		return target_position # No possible intercept; aim directly.
 
 	return target_position + target_velocity * time
-
-func execute_attack(target: Node2D) -> void:
-	if cooldown_remaining > 0.0:
-		return
-	var aim_point := get_intercept_point(
-		global_position,
-		target.global_position,
-		target.velocity
-	)
-	var direction := global_position.direction_to(aim_point)
-
-	var new_projectile := projectile.instantiate() as Projectile
-	get_tree().current_scene.add_child(new_projectile)
-	new_projectile.global_position = global_position
-	new_projectile.speed = projectile_speed
-	new_projectile.damage = damage
-	new_projectile.target_group = target_group
-	new_projectile.fire(direction)
-	cooldown_remaining = cooldown_time

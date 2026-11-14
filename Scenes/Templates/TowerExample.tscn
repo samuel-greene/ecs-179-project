@@ -9,8 +9,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h782m"]
 size = Vector2(124, 124)
 
-[node name="Tower" type="StaticBody2D" unique_id=1624496758]
+[node name="Tower" type="StaticBody2D" unique_id=1624496758 node_paths=PackedStringArray("attack")]
 script = ExtResource("1_uffha")
+attack = NodePath("RangeAttack")
 metadata/_custom_type_script = "uid://443yjrotjii5"
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=987712020]

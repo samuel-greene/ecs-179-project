@@ -3,8 +3,8 @@ class_name Alien
 
 @export var move_speed: float = 150.0
 @export var coin_scene: PackedScene
+@export var attack: Attack
 
-@onready var attack: MeleeAttack = $MeleeAttack
 @onready var health: Health = $Health
 
 var target: Node2D

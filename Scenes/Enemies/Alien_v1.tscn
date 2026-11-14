@@ -9,9 +9,10 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_omjkn"]
 radius = 19.104973
 
-[node name="Enemy" type="CharacterBody2D" unique_id=1763832684]
+[node name="Enemy" type="CharacterBody2D" unique_id=1763832684 node_paths=PackedStringArray("attack")]
 script = ExtResource("1_37ckg")
 coin_scene = ExtResource("2_2vie8")
+attack = NodePath("MeleeAttack")
 metadata/_custom_type_script = "uid://uc706bhvr0qk"
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=987712020]

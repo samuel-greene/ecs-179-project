@@ -42,13 +42,13 @@ func take_damage(amount: float):
 func gain_health(amount: float):
 	var health_gained = 0
 	if current_health + amount < max_health:
-		update_health_bar()
 		current_health += amount
 		health_gained = amount
 	else:
 		health_gained = max_health - current_health
-		update_health_bar()
-		
+	
+	update_health_bar()
+	
 	healed.emit(health_gained)
 
 #Updates the health bar of a character if they have one assigned through the 

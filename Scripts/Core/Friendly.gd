@@ -3,8 +3,8 @@ class_name Friendly
 
 @export var move_speed: float = 170.0
 @export var tower_clearance: float = 150.0
+@export var attack: Attack
 
-@onready var attack: MeleeAttack = $MeleeAttack
 @onready var health: Health = $Health
 
 var target: Alien
