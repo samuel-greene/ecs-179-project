@@ -4,6 +4,7 @@ class_name Health
 @export var max_health: float = 20
 @export var starting_health: float = 20
 @export var health_bar: ProgressBar
+@export var damage_number_scene: PackedScene
 
 signal healed(amount: float)
 signal received_damage(amount: float)
@@ -34,6 +35,7 @@ func take_damage(amount: float):
 				health_bar.visible = false
 	
 	received_damage.emit(damage_taken)
+	show_damage_number(damage_taken)
 	
 	if current_health == 0:
 		died.emit()
@@ -61,3 +63,13 @@ func update_health_bar():
 		health_bar.max_value = max_health
 		health_bar.value = current_health
 		
+		
+func show_damage_number(amount:float):
+	if damage_number_scene == null:
+		return
+		
+	var damage_number = damage_number_scene.instantiate()
+	get_tree().current_scene.add_child(damage_number)
+	
+	damage_number.global_position = get_parent().global_position + Vector2(0, -30)
+	damage_number.setup(amount)

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://df8o2r7x5qjht" path="res://Scripts/Core/Friendly.gd" id="1_mwjnv"]
 [ext_resource type="Texture2D" uid="uid://cqn6tm21e6rqv" path="res://Sprites/friendly_placeholder.png" id="2_w2jfi"]
 [ext_resource type="Script" uid="uid://2ot2gk4ce1sq" path="res://Scripts/Components (Data)/HealthComponent.gd" id="3_lunqh"]
+[ext_resource type="PackedScene" uid="uid://dsy2roe5bpc" path="res://Scenes/DamageNumbers.tscn" id="4_1eiql"]
 [ext_resource type="Script" uid="uid://cu73mtb13446t" path="res://Scripts/Core/MeleeAttack.gd" id="4_ipaau"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_omjkn"]
@@ -20,6 +21,7 @@ texture = ExtResource("2_w2jfi")
 [node name="Health" type="Node" parent="." unique_id=254047916 node_paths=PackedStringArray("health_bar")]
 script = ExtResource("3_lunqh")
 health_bar = NodePath("../FriendlyProgressBar")
+damage_number_scene = ExtResource("4_1eiql")
 metadata/_custom_type_script = "uid://2ot2gk4ce1sq"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=983849442]
