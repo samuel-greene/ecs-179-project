@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://rodpt20um276"]
+
+[ext_resource type="Script" uid="uid://uc706bhvr0qk" path="res://Scripts/Core/Alien.gd" id="1_aiyty"]
+[ext_resource type="PackedScene" uid="uid://cf15at0rwcvix" path="res://Scenes/Templates/Coin.tscn" id="2_w3amy"]
+[ext_resource type="Texture2D" uid="uid://cc1v70qyw16wq" path="res://Sprites/alien_placeholder.png" id="3_imlkp"]
+[ext_resource type="Script" uid="uid://2ot2gk4ce1sq" path="res://Scripts/Components (Data)/HealthComponent.gd" id="4_5tysb"]
+[ext_resource type="PackedScene" uid="uid://dsy2roe5bpc" path="res://Scenes/DamageNumbers.tscn" id="5_ow0tb"]
+[ext_resource type="Script" uid="uid://cu73mtb13446t" path="res://Scripts/Core/MeleeAttack.gd" id="6_hf3ga"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_omjkn"]
+radius = 19.104973
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1763832684 node_paths=PackedStringArray("attack")]
+script = ExtResource("1_aiyty")
+coin_scene = ExtResource("2_w3amy")
+attack = NodePath("RangeAttack")
+metadata/_custom_type_script = "uid://uc706bhvr0qk"
+
+[node name="Icon" type="Sprite2D" parent="." unique_id=987712020]
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("3_imlkp")
+
+[node name="Health" type="Node" parent="." unique_id=254047916 node_paths=PackedStringArray("health_bar")]
+script = ExtResource("4_5tysb")
+health_bar = NodePath("../ProgressBar")
+damage_number_scene = ExtResource("5_ow0tb")
+metadata/_custom_type_script = "uid://2ot2gk4ce1sq"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=983849442]
+visible = false
+shape = SubResource("CircleShape2D_omjkn")
+
+[node name="RangeAttack" type="Node2D" parent="." unique_id=1493734982]
+script = ExtResource("6_hf3ga")
+attack_range = 400.0
+cooldown_time = 2.0
+metadata/_custom_type_script = "uid://cu73mtb13446t"
+
+[node name="Cooldown" type="Timer" parent="RangeAttack" unique_id=1682052714]
+wait_time = 0.25
+one_shot = true
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1599419165]
+modulate = Color(0, 0.7189554, 0.34405744, 1)
+offset_left = -20.0
+offset_top = -52.0
+offset_right = 20.0
+offset_bottom = -48.0
+show_percentage = false
