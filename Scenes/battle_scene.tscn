@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dlfg0b1j8uyi8" path="res://Scenes/Templates/EnvironmentExample.tscn" id="2_hdvqd"]
 [ext_resource type="PackedScene" uid="uid://vg7n6673hkjq" path="res://Scenes/Enemies/Alien_v1.tscn" id="3_e5vbs"]
 [ext_resource type="PackedScene" uid="uid://d3ws40m8gf6yt" path="res://Scenes/Friendlies/Friend_v1.tscn" id="4_3gnqe"]
+[ext_resource type="PackedScene" uid="uid://dp84mn6dblw4k" path="res://Scenes/Enemies/Heavy_Alien_v1.tscn" id="5_3gnqe"]
+[ext_resource type="PackedScene" uid="uid://t4oufugppriw" path="res://Scenes/Enemies/Fast_Alien_v1.tscn" id="6_gt16y"]
 
 [node name="BattleScene" type="Node2D" unique_id=61709342]
 
@@ -16,8 +18,14 @@
 [node name="Enemy" parent="." unique_id=1763832684 instance=ExtResource("3_e5vbs")]
 position = Vector2(-395, -187)
 
-[node name="Enemy2" parent="." unique_id=2142701411 instance=ExtResource("3_e5vbs")]
-position = Vector2(412, -107)
-
 [node name="Friendly" parent="." unique_id=1658742211 instance=ExtResource("4_3gnqe")]
 position = Vector2(3, -200)
+
+[node name="Enemy3" parent="." unique_id=665066045 instance=ExtResource("5_3gnqe")]
+position = Vector2(422, -231)
+
+[node name="Enemy4" parent="." unique_id=741873044 instance=ExtResource("6_gt16y")]
+position = Vector2(-499, 242)
+
+[node name="Enemy2" parent="." unique_id=167117589 instance=ExtResource("5_3gnqe")]
+position = Vector2(464, 227)
