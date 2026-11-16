@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cf15at0rwcvix" path="res://Scenes/Templates/Coin.tscn" id="2_w3amy"]
 [ext_resource type="Texture2D" uid="uid://bnjn3w86jdci0" path="res://Sprites/ranged_alien.png" id="3_aiyty"]
 [ext_resource type="Script" uid="uid://2ot2gk4ce1sq" path="res://Scripts/Components (Data)/HealthComponent.gd" id="4_5tysb"]
+[ext_resource type="Script" uid="uid://ba8d1dwhtisd8" path="res://Scripts/Visuals/SpriteAnimator.gd" id="4_w3amy"]
 [ext_resource type="PackedScene" uid="uid://dsy2roe5bpc" path="res://Scenes/DamageNumbers.tscn" id="5_ow0tb"]
 [ext_resource type="Script" uid="uid://cu73mtb13446t" path="res://Scripts/Core/MeleeAttack.gd" id="6_hf3ga"]
 
@@ -20,6 +21,7 @@ metadata/_custom_type_script = "uid://uc706bhvr0qk"
 position = Vector2(8, -3)
 scale = Vector2(1.9219759, 2.040809)
 texture = ExtResource("3_aiyty")
+script = ExtResource("4_w3amy")
 
 [node name="Health" type="Node" parent="." unique_id=254047916 node_paths=PackedStringArray("health_bar")]
 script = ExtResource("4_5tysb")
