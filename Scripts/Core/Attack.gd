@@ -1,6 +1,8 @@
 extends Node2D
 class_name Attack
 
+signal attacked(target: Node2D)
+
 @export var damage: float = 5.0
 @export var attack_range: float = 30.0
 @export var cooldown_time: float = 1.0
@@ -50,6 +52,10 @@ func execute_attack(target: Node2D) -> void:
 
 	if _perform_attack(target):
 		cooldown_remaining = cooldown_time
+		
+	if _perform_attack(target):
+		cooldown_remaining = cooldown_time
+		attacked.emit(target)
 
 
 ## Override in subclasses. Return true when the attack succeeds.
