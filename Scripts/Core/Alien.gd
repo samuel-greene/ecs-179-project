@@ -3,10 +3,14 @@ class_name Alien
 
 @export var move_speed: float = 150.0
 @export var coin_scene: PackedScene
-@export var attack: Attack
+#@export var attack: Attack
 @export var attack_wait_time: float = 0.25
 
+@export var is_gun_alien: bool = false
+
 @onready var health: Health = $Health
+@onready var ranged_attack: Attack = get_node_or_null("RangeAttack") as Attack
+@onready var melee_attack: Attack = get_node_or_null("MeleeAttack") as Attack
 
 # tracks the cooldown in between mouse clicks
 var mouse_cooldown: float = 0.0
@@ -46,11 +50,20 @@ func set_target():
 	target = NodeUtils.get_closest_node_in_group(self, "friendlies") 
 
 func handle_movement_behavior(_delta: float) -> void:
+	var attack: Attack
+	
+	if is_gun_alien:
+		attack = ranged_attack
+	else:
+		attack = melee_attack
+		
+	if attack == null:
+		return
+		
 	if not attack.is_target_in_range(target):
 		var direction: Vector2 = (target.global_position - global_position).normalized()
 		
 		velocity = direction * move_speed
-		
 		move_and_slide()
 	else:
 		velocity = Vector2.ZERO

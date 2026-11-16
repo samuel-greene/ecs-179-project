@@ -3,7 +3,7 @@ class_name RangeAttack
 
 @export var projectile_speed: float = 1000.0
 @export var projectile: PackedScene
-@export var target_group: StringName = &"enemies"
+@export var target_group: StringName = &"friendlies"
 
 
 func _init() -> void:
@@ -20,7 +20,11 @@ func _perform_attack(target: Node2D) -> bool:
 		push_warning("Projectile scene must have a Projectile root.")
 		return false
 
-	var target_velocity: Vector2 = target.velocity
+	var target_velocity: Vector2 = Vector2.ZERO
+
+	if target is CharacterBody2D:
+		target_velocity = target.velocity
+	
 	var aim_point := get_intercept_point(
 		global_position,
 		target.global_position,
@@ -33,6 +37,10 @@ func _perform_attack(target: Node2D) -> bool:
 	new_projectile.damage = damage
 	new_projectile.target_group = target_group
 	new_projectile.fire(global_position.direction_to(aim_point))
+	
+	print("GUN: Fired projectile at ", target.name)
+	print("GUN: Projectile damage = ", damage)
+	
 	return true
 
 

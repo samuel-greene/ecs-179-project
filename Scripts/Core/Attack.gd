@@ -52,9 +52,6 @@ func execute_attack(target: Node2D) -> void:
 
 	if _perform_attack(target):
 		cooldown_remaining = cooldown_time
-		
-	if _perform_attack(target):
-		cooldown_remaining = cooldown_time
 		attacked.emit(target)
 
 
