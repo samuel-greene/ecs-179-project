@@ -6,6 +6,7 @@ signal attacked(target: Node2D)
 @export var damage: float = 5.0
 @export var attack_range: float = 30.0
 @export var cooldown_time: float = 1.0
+@export var target_group: StringName = &"friendlies"
 
 var cooldown_remaining: float = 0.0
 

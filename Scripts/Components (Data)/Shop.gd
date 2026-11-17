@@ -8,6 +8,7 @@ func _ready() -> void:
 	# connects the item and upgrades buttons
 	$ShopLayout/Categories/ItemsButton.pressed.connect(items_button_pressed)
 	$ShopLayout/Categories/UpgradesButton.pressed.connect(upgrade_button_pressed)
+	$StartGameButton.pressed.connect(start_game_pressed)
 	
 	#test items
 	add_item("Alien Test Item","test", 50, preload("res://Sprites/alien_placeholder.png"), 0)
@@ -70,3 +71,6 @@ func item_bought(price: int) -> void:
 		update_currency()
 	else:
 		print("Purchase unsuccessful")
+
+func start_game_pressed() -> void:
+	get_tree().change_scene_to_file("res://Scenes/battle_scene.tscn")

@@ -3,7 +3,6 @@ class_name RangeAttack
 
 @export var projectile_speed: float = 1000.0
 @export var projectile: PackedScene
-@export var target_group: StringName = &"friendlies"
 
 
 func _init() -> void:

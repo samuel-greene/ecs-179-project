@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b1xyi1ku0anev"]
 
-[ext_resource type="PackedScene" uid="uid://bogcuvukw48ty" path="res://Scenes/Templates/TowerExample.tscn" id="1_b25br"]
+[ext_resource type="PackedScene" uid="uid://3w84bw7jmt6v" path="res://Scenes/Towers/CoreTower.tscn" id="2_20f6w"]
 [ext_resource type="PackedScene" uid="uid://dlfg0b1j8uyi8" path="res://Scenes/Templates/EnvironmentExample.tscn" id="2_hdvqd"]
 [ext_resource type="PackedScene" uid="uid://vg7n6673hkjq" path="res://Scenes/Enemies/Alien_v1.tscn" id="3_e5vbs"]
 [ext_resource type="PackedScene" uid="uid://d3ws40m8gf6yt" path="res://Scenes/Friendlies/Friend_v1.tscn" id="4_3gnqe"]
@@ -14,7 +14,7 @@
 
 [node name="EnvironmentExample" parent="." unique_id=1168968317 instance=ExtResource("2_hdvqd")]
 
-[node name="TowerExample" parent="." unique_id=1624496758 instance=ExtResource("1_b25br")]
+[node name="Tower" parent="." unique_id=1624496758 instance=ExtResource("2_20f6w")]
 
 [node name="Enemy" parent="." unique_id=1763832684 instance=ExtResource("3_e5vbs")]
 position = Vector2(-395, -187)

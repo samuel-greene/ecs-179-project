@@ -30,6 +30,7 @@ shape = SubResource("RectangleShape2D_h782m")
 [node name="RangeAttack" type="Node2D" parent="." unique_id=1896199046]
 script = ExtResource("4_uffha")
 projectile = ExtResource("5_8dx05")
+target_group = &"enemies"
 metadata/_custom_type_script = "uid://cc45cl32kgryo"
 
 [node name="TowerProgressBar" type="ProgressBar" parent="." unique_id=2104084913]

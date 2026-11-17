@@ -9,7 +9,7 @@ class_name Friendly
 
 var target: Alien
 var tower: Node2D
-
+@export var target_group: StringName = &"enemies"
 
 func _ready() -> void:
 	add_to_group("friendlies")
@@ -29,7 +29,7 @@ func _process(delta: float) -> void:
 		handle_movement_behavior(delta)
 
 func set_target():
-	target = NodeUtils.get_closest_node_in_group(self, "enemies")
+	target = NodeUtils.get_closest_node_in_group(self, target_group)
 
 
 func handle_movement_behavior(_delta: float) -> void:

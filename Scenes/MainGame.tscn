@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ckjhlpt60cnsj"]
+
+[ext_resource type="PackedScene" uid="uid://b1xyi1ku0anev" path="res://Scenes/battle_scene.tscn" id="1_frf35"]
+[ext_resource type="PackedScene" uid="uid://7hx6xo0lyp0b" path="res://Scenes/Shop.tscn" id="2_yprpe"]
+
+[node name="MainGame" type="Node2D" unique_id=83804707]
+
+[node name="BattleScene" parent="." unique_id=61709342 instance=ExtResource("1_frf35")]
+
+[node name="Shop" parent="." unique_id=756572613 instance=ExtResource("2_yprpe")]
