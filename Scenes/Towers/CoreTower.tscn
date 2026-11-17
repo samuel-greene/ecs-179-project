@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://2ot2gk4ce1sq" path="res://Scripts/Components (Data)/HealthComponent.gd" id="3_l57f0"]
 [ext_resource type="Script" uid="uid://cc45cl32kgryo" path="res://Scripts/Core/RangeAttack.gd" id="4_8d86o"]
 [ext_resource type="PackedScene" uid="uid://dy6kwk5r8k528" path="res://Scenes/Templates/ProjectileExample.tscn" id="5_uksx3"]
+[ext_resource type="Script" uid="uid://ba8d1dwhtisd8" path="res://Scripts/Visuals/SpriteAnimator.gd" id="6_jolt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h782m"]
 size = Vector2(124, 124)
@@ -16,6 +17,11 @@ metadata/_custom_type_script = "uid://443yjrotjii5"
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=987712020]
 texture = ExtResource("2_8ld7m")
+script = ExtResource("6_jolt")
+flip_with_movement = false
+idle_bob_height = 0.0
+jolt_scale = Vector2(1.2, 1.2)
+jolt_rotation_degrees = 4.0
 
 [node name="Health" type="Node" parent="." unique_id=254047916 node_paths=PackedStringArray("health_bar")]
 script = ExtResource("3_l57f0")
