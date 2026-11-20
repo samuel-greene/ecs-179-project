@@ -76,6 +76,7 @@ func _start_sequence() -> void:
 
 func _on_landed() -> void:
 	_landed = true
+	UISounds.play("coin", 0.05)
 	queue_redraw()
 	# Wind the spin down so the coin ends up facing forward.
 	var face_forward := (floorf(_spin_angle / TAU) + 2.0) * TAU

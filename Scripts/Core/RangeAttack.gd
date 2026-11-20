@@ -36,6 +36,7 @@ func _perform_attack(target: Node2D) -> bool:
 	new_projectile.damage = damage
 	new_projectile.target_group = target_group
 	new_projectile.fire(global_position.direction_to(aim_point))
+	UISounds.play("shot", 0.1)
 	
 	print("GUN: Fired projectile at ", target.name)
 	print("GUN: Projectile damage = ", damage)

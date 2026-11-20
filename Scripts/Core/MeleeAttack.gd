@@ -8,5 +8,6 @@ func _perform_attack(target: Node2D) -> bool:
 		push_warning("Target " + target.name + " has no valid Health component")
 		return false
 
+	UISounds.play("melee", 0.1)
 	health.take_damage(damage)
 	return true
