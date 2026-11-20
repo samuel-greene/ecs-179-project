@@ -14,6 +14,9 @@ func _ready() -> void:
 	$ShopLayout/Categories/ItemsButton.pressed.connect(items_button_pressed)
 	$ShopLayout/Categories/UpgradesButton.pressed.connect(upgrade_button_pressed)
 	$StartGameButton.pressed.connect(start_game_pressed)
+	$StartGameButton.set_meta("ui_sound", "start")
+	$ShopLayout/Categories/ItemsButton.set_meta("ui_sound", "tab")
+	$ShopLayout/Categories/UpgradesButton.set_meta("ui_sound", "tab")
 	
 	#test items
 	add_item("Alien Test Item","test", 50, preload("res://Sprites/alien_placeholder.png"), 0)
@@ -81,9 +84,11 @@ func item_bought(price: int, item: Node) -> void:
 		currency -= price
 		animate_currency(old_value, currency)
 		item.play_success(price)
+		UISounds.play("buy")
 		_float_text_at_currency("-" + str(price), Color(1.0, 0.85, 0.2))
 	else:
 		item.play_fail()
+		UISounds.play("error")
 		_float_text_at_currency("Not enough coins", Color(1.0, 0.4, 0.4))
 		print("Purchase unsuccessful")
 

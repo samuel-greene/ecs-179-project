@@ -28,6 +28,8 @@ func _ready() -> void:
 	$VBoxContainer/BuyButton.pressed.connect(item_bought)
 	$VBoxContainer/BuyButton.button_down.connect(_on_buy_down)
 	$VBoxContainer/BuyButton.button_up.connect(_on_buy_up)
+	$VBoxContainer/BuyButton.set_meta("ui_sound", "")
+	$VBoxContainer/BuyButton.set_meta("ui_hover_sound", false)
 	# scale and rotation happen around the middle of the card / icon
 	resized.connect(_update_pivots)
 	_icon.resized.connect(_update_pivots)
@@ -54,6 +56,8 @@ func _process(_delta: float) -> void:
 		_tween_scale(_target_scale(), 0.12)
 		_tween_color(_rest_color(), 0.12)
 		_set_icon_wiggle(_hovering)
+		if _hovering == true:
+			UISounds.play("hover", 0.05)
 
 
 # sets up the information for the item and updates the graphics accordingly
