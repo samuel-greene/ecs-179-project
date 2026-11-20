@@ -19,11 +19,11 @@ func _ready() -> void:
 	$ShopLayout/Categories/UpgradesButton.set_meta("ui_sound", "tab")
 	
 	#test items
-	add_item("Alien Test Item","test", 50, preload("res://Sprites/alien_placeholder.png"), 0)
-	add_item("Friendly Test Item","test", 100, preload("res://Sprites/friendly_placeholder.png"), 0)
+	add_item("Alien Test Item"," ", 50, preload("res://Sprites/alien_placeholder.png"), 0)
+	add_item("Friendly Test Item"," ", 100, preload("res://Sprites/friendly_placeholder.png"), 0)
 	
 	# test upgrade
-	add_item("Coin Upgrade","test", 150, preload("res://Sprites/coin_placeholder.png"), 1)
+	add_item("Mouse Upgrade","Adds +1 Damage To Your Mouse Click", 100, preload("res://Sprites/mouseIcon.png"), 1)
 	
 	update_currency()
 	_pulse_start_button()
@@ -87,6 +87,8 @@ func item_bought(price: int, item: Node) -> void:
 		item.play_success(price)
 		UISounds.play("buy")
 		_float_text_at_currency("-" + str(price), Color(1.0, 0.85, 0.2))
+		if item.item_name == "Mouse Upgrade":
+			Alien.upgrade_mouse_attack()
 	else:
 		item.play_fail()
 		UISounds.play("error")

@@ -12,6 +12,8 @@ class_name Alien
 @onready var ranged_attack: Attack = get_node_or_null("RangeAttack") as Attack
 @onready var melee_attack: Attack = get_node_or_null("MeleeAttack") as Attack
 
+static var attack_damage := 3
+
 # tracks the cooldown in between mouse clicks
 var mouse_cooldown: float = 0.0
 
@@ -89,4 +91,7 @@ func mouse_attack():
 		var alien = a["collider"]
 		
 		if alien.is_in_group("enemies"):
-			alien.health.take_damage(3)
+			alien.health.take_damage(Alien.attack_damage)
+			
+static func upgrade_mouse_attack():
+	attack_damage += 1
