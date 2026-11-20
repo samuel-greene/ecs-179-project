@@ -34,6 +34,7 @@ func _ready() -> void:
 	health.died.connect(_on_health_died)
 
 func _on_health_died() -> void:
+	UISounds.play("enemy_death", 0.1)
 	var coin = coin_scene.instantiate()
 	get_tree().current_scene.add_child(coin)
 	coin.global_position = global_position
@@ -77,7 +78,8 @@ func mouse_attack():
 			return
 		
 	mouse_cooldown = attack_wait_time
-	
+	UISounds.play("mouse_attack", 0.05)
+
 	var space_state = get_world_2d().direct_space_state
 	
 	var mouse = PhysicsPointQueryParameters2D.new()

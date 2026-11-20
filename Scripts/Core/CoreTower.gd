@@ -7,4 +7,5 @@ func _ready() -> void:
 	health.died.connect(core_tower_death)
 
 func core_tower_death() -> void:
+	UISounds.play("core_destroyed")
 	get_tree().change_scene_to_file("res://Scenes/Shop.tscn")

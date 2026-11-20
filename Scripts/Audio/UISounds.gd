@@ -7,11 +7,24 @@ const SOUNDS := {
 	"buy": preload("res://Sounds/UI/buy.ogg"),
 	"error": preload("res://Sounds/UI/error.ogg"),
 	"start": preload("res://Sounds/UI/start.ogg"),
+	"mouse_attack": preload("res://Sounds/Game/mouse_attack.wav"),
+	"hit": preload("res://Sounds/Game/hit.wav"),
+	"enemy_death": preload("res://Sounds/Game/enemy_death.wav"),
+	"friendly_death": preload("res://Sounds/Game/friendly_death.wav"),
+	"coin": preload("res://Sounds/Game/coin.wav"),
+	"shot": preload("res://Sounds/Game/shot.wav"),
+	"melee": preload("res://Sounds/Game/melee.wav"),
+	"tower_destroyed": preload("res://Sounds/Game/tower_destroyed.wav"),
+	"core_destroyed": preload("res://Sounds/Game/core_destroyed.wav"),
 }
 
 const VOLUMES := {
 	"hover": -8.0,
 	"tab": -6.0,
+	"hit": -8.0,
+	"shot": -10.0,
+	"melee": -8.0,
+	"coin": -4.0,
 }
 
 const PITCHES := {
@@ -24,7 +37,8 @@ const MUSIC_FADE_TIME := 0.5
 
 const HOVER_BUS := "UI Hover"
 const HOVER_CUTOFF_HZ := 1200.0
-const PLAYER_COUNT := 8
+const PLAYER_COUNT := 16
+const SFX_VOLUME := -3.0
 
 var _players: Array[AudioStreamPlayer] = []
 var _next_player: int = 0
@@ -53,7 +67,7 @@ func play(sound_name: String, pitch_variation: float = 0.0) -> void:
 	_next_player = (_next_player + 1) % PLAYER_COUNT
 
 	player.stream = SOUNDS[sound_name]
-	player.volume_db = VOLUMES.get(sound_name, 0.0)
+	player.volume_db = SFX_VOLUME + VOLUMES.get(sound_name, 0.0)
 	player.pitch_scale = PITCHES.get(sound_name, 1.0) + randf_range(-pitch_variation, pitch_variation)
 	player.bus = HOVER_BUS if sound_name == "hover" else "Master"
 	player.play()

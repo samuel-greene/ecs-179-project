@@ -36,6 +36,7 @@ func take_damage(amount: float):
 	
 	received_damage.emit(damage_taken)
 	show_damage_number(damage_taken)
+	UISounds.play("hit", 0.1)
 	
 	if current_health == 0:
 		died.emit()

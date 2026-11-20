@@ -16,6 +16,7 @@ func _ready() -> void:
 	health.died.connect(_on_health_died)
 
 func _on_health_died() -> void:
+	UISounds.play("friendly_death", 0.1)
 	queue_free()
 
 func _process(delta: float) -> void:
