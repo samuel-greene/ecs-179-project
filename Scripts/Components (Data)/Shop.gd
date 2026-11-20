@@ -27,6 +27,7 @@ func _ready() -> void:
 	
 	update_currency()
 	_pulse_start_button()
+	UISounds.play_music()
 	show()
 	
 	#sets default visibility to the items
@@ -94,6 +95,7 @@ func item_bought(price: int, item: Node) -> void:
 
 func start_game_pressed() -> void:
 	$StartGameButton.disabled = true
+	UISounds.stop_music()
 	var tween := create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, 0.25)
 	await tween.finished

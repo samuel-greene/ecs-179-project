@@ -18,12 +18,18 @@ const PITCHES := {
 	"hover": 0.85,
 }
 
+const MENU_MUSIC := preload("res://Sounds/Music/menu_music.mp3")
+const MUSIC_VOLUME := -14.0
+const MUSIC_FADE_TIME := 0.5
+
 const HOVER_BUS := "UI Hover"
 const HOVER_CUTOFF_HZ := 1200.0
 const PLAYER_COUNT := 8
 
 var _players: Array[AudioStreamPlayer] = []
 var _next_player: int = 0
+var _music_player: AudioStreamPlayer
+var _music_tween: Tween
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -34,6 +40,10 @@ func _ready() -> void:
 		var player := AudioStreamPlayer.new()
 		add_child(player)
 		_players.append(player)
+
+	_music_player = AudioStreamPlayer.new()
+	_music_player.stream = MENU_MUSIC
+	add_child(_music_player)
 
 	get_tree().node_added.connect(_on_node_added)
 	_hook_up_existing(get_tree().root)
@@ -47,6 +57,24 @@ func play(sound_name: String, pitch_variation: float = 0.0) -> void:
 	player.pitch_scale = PITCHES.get(sound_name, 1.0) + randf_range(-pitch_variation, pitch_variation)
 	player.bus = HOVER_BUS if sound_name == "hover" else "Master"
 	player.play()
+
+func play_music() -> void:
+	_kill_music_tween()
+	if not _music_player.playing:
+		_music_player.volume_db = -60.0
+		_music_player.play()
+	_music_tween = create_tween()
+	_music_tween.tween_property(_music_player, "volume_db", MUSIC_VOLUME, MUSIC_FADE_TIME)
+
+func stop_music() -> void:
+	_kill_music_tween()
+	_music_tween = create_tween()
+	_music_tween.tween_property(_music_player, "volume_db", -60.0, MUSIC_FADE_TIME)
+	_music_tween.tween_callback(_music_player.stop)
+
+func _kill_music_tween() -> void:
+	if _music_tween != null and _music_tween.is_valid():
+		_music_tween.kill()
 
 func _add_hover_bus() -> void:
 	AudioServer.add_bus()
