@@ -8,4 +8,4 @@ func _ready() -> void:
 
 func core_tower_death() -> void:
 	UISounds.play("core_destroyed")
-	get_tree().change_scene_to_file("res://Scenes/Shop.tscn")
+	get_tree().call_deferred("change_scene_to_file", "res://Scenes/Shop.tscn")

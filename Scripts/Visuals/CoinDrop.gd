@@ -1,8 +1,13 @@
-extends Node2D
+extends Area2D
 class_name CoinDrop
 ## A dropped coin pops up, hovers while spinning and bobbing, then drops,
 ## bounces once, and settles face-forward on the ground.
 ## Attach to the root node of Coin.tscn (needs a child Sprite2D named "Sprite2D").
+
+# each coin is worth 5 currency
+@export var coin_value = 5
+
+
 
 @export_group("Hover")
 ## How high the coin floats above the ground (px).
@@ -30,6 +35,7 @@ class_name CoinDrop
 @export var shadow_offset_y: float = 20.0
 
 @onready var _sprite: Sprite2D = $Sprite2D
+@onready var _collision: CollisionShape2D = $CoinShape
 
 var _base_scale: Vector2
 var _base_position: Vector2
@@ -38,6 +44,8 @@ var _bob_amount: float = 1.0
 var _landed: bool = false
 var _time: float = 0.0
 var _spin_angle: float = 0.0
+var _collision_base_position: Vector2
+var _collected: bool = false
 
 
 func _ready() -> void:
@@ -47,6 +55,7 @@ func _ready() -> void:
 	# The enemy sets this coin's position right AFTER adding it to the scene,
 	# so wait until the end of the frame before reading it.
 	_start_sequence.call_deferred()
+	_collision_base_position = _collision.position
 
 
 func _start_sequence() -> void:
@@ -93,6 +102,8 @@ func _process(delta: float) -> void:
 	_sprite.scale = Vector2(_base_scale.x * cos(_spin_angle), _base_scale.y)
 	var bob := sin(_time * bob_speed) * bob_height * _bob_amount
 	_sprite.position = _base_position + Vector2(0.0, -_height - bob)
+	_collision.position = _collision_base_position + Vector2(0.0, -_height - bob)
+
 
 
 # Ground shadow: shrinks and fades as the coin rises.
@@ -101,3 +112,41 @@ func _draw() -> void:
 	draw_set_transform(Vector2(0.0, shadow_offset_y), 0.0, Vector2(1.0, 0.4))
 	draw_circle(Vector2.ZERO, shadow_radius * (1.0 - 0.4 * lift),
 		Color(0.0, 0.0, 0.0, shadow_alpha * (1.0 - 0.6 * lift)))
+		
+		
+		
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			var space_state = get_world_2d().direct_space_state
+
+			var mouse = PhysicsPointQueryParameters2D.new()
+			mouse.position = get_global_mouse_position()
+			mouse.collide_with_areas = true
+			mouse.collide_with_bodies = false
+
+			var results = space_state.intersect_point(mouse)
+
+			for result in results:
+
+				if result["collider"] == self:
+					GameData.currency += coin_value
+					collect_coin()
+					return
+					
+
+func collect_coin() -> void:
+	if _collected:
+		return
+
+	_collected = true
+	set_process_input(false)
+	_collision.set_deferred("disabled", true)
+
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(_sprite, "scale", Vector2.ZERO, 0.2)
+	tween.tween_property(_sprite, "modulate:a", 0.2, 0.2)
+	tween.tween_property(self, "position:y", position.y - 15.0, 0.2)
+
+	tween.chain().tween_callback(queue_free)

@@ -1,7 +1,7 @@
 extends Control
-var currency: int = 100
 
 const SHOP_ITEM = preload("res://Scenes/ShopItem.tscn")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -41,6 +41,7 @@ func _process(delta: float) -> void:
 	
 # open shop should be called every time the shop is opened, updates the user's number of coins
 func open_shop():
+	modulate.a = 1.0
 	update_currency()
 	show()
 	
@@ -56,7 +57,7 @@ func add_item(item_name: String, item_description: String, price: int, icon: Tex
 	
 # updates the number of coins the user has
 func update_currency():
-	$ShopLayout/header/Currency.text = str(currency) + " Coins"
+	$ShopLayout/header/Currency.text = str(GameData.currency) + " Coins"
 	
 	
 # controls which items are visible.
@@ -80,10 +81,10 @@ func items_button_pressed() -> void:
 	filter_items(0)
 	
 func item_bought(price: int, item: Node) -> void:
-	if currency >= price:
-		var old_value := currency
-		currency -= price
-		animate_currency(old_value, currency)
+	if GameData.currency >= price:
+		var old_value := GameData.currency
+		GameData.currency -= price
+		animate_currency(old_value, GameData.currency)
 		item.play_success(price)
 		UISounds.play("buy")
 		_float_text_at_currency("-" + str(price), Color(1.0, 0.85, 0.2))
@@ -101,6 +102,10 @@ func start_game_pressed() -> void:
 	var tween := create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, 0.25)
 	await tween.finished
+	
+	hide()
+	modulate.a = 1.0
+	
 	get_tree().change_scene_to_file("res://Scenes/battle_scene.tscn")
 
 
@@ -152,3 +157,7 @@ func _pulse_start_button() -> void:
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
 	tween.tween_property(button, "scale", Vector2.ONE, 0.6) \
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+
+func _on_coin_collected(value: int):
+	GameData.currency += value
+	update_currency()

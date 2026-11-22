@@ -36,7 +36,7 @@ func _ready() -> void:
 func _on_health_died() -> void:
 	UISounds.play("enemy_death", 0.1)
 	var coin = coin_scene.instantiate()
-	get_tree().current_scene.add_child(coin)
+	get_tree().current_scene.add_child.call_deferred(coin)
 	coin.global_position = global_position
 	
 	queue_free()
