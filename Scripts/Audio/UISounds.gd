@@ -6,16 +6,19 @@ const SOUNDS := {
 	"tab": preload("res://Sounds/UI/tab.ogg"),
 	"buy": preload("res://Sounds/UI/buy.ogg"),
 	"error": preload("res://Sounds/UI/error.ogg"),
-	"start": preload("res://Sounds/UI/start.ogg"),
-	"mouse_attack": preload("res://Sounds/Game/mouse_attack.wav"),
+	"start": preload("res://Sounds/UI/game_start.mp3"),
+	"transition": preload("res://Sounds/UI/transition_woosh.mp3"),
+	"mouse_attack": preload("res://Sounds/Game/mouse_attack.ogg"),
+	"friendly_spawn": preload("res://Sounds/Game/friendly_spawn.ogg"),
 	"hit": preload("res://Sounds/Game/hit.wav"),
 	"enemy_death": preload("res://Sounds/Game/enemy_death.wav"),
 	"friendly_death": preload("res://Sounds/Game/friendly_death.wav"),
 	"coin": preload("res://Sounds/Game/coin.wav"),
+	"coin_pickup": preload("res://Sounds/Game/coin_pickup.ogg"),
 	"shot": preload("res://Sounds/Game/shot.wav"),
 	"melee": preload("res://Sounds/Game/melee.wav"),
 	"tower_destroyed": preload("res://Sounds/Game/tower_destroyed.wav"),
-	"core_destroyed": preload("res://Sounds/Game/core_destroyed.wav"),
+	"core_destroyed": preload("res://Sounds/Game/game_over.mp3"),
 }
 
 const VOLUMES := {
@@ -25,6 +28,11 @@ const VOLUMES := {
 	"shot": -10.0,
 	"melee": -8.0,
 	"coin": -4.0,
+	"coin_pickup": -4.0,
+	"mouse_attack": -4.0,
+	"friendly_spawn": -6.0,
+	"start": 6.0,
+	"transition": -8.0,
 }
 
 const PITCHES := {

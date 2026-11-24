@@ -1,11 +1,16 @@
 extends Tower
 
+## Seconds to wait after the core dies before switching to the shop,
+## so the game over sound has time to play.
+@export var shop_delay: float = 1.5
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	super()
-	health.died.connect(core_tower_death)
 
-func core_tower_death() -> void:
+# Replaces Tower's death handler, so only the game over sound plays
+# (not the regular tower_destroyed sound as well).
+func _on_health_died() -> void:
 	UISounds.play("core_destroyed")
-	get_tree().call_deferred("change_scene_to_file", "res://Scenes/Shop.tscn")
+	# The tree's timer keeps running after this tower is freed.
+	var tree := get_tree()
+	tree.create_timer(shop_delay).timeout.connect(
+		tree.change_scene_to_file.bind("res://Scenes/Shop.tscn"))
+	queue_free()

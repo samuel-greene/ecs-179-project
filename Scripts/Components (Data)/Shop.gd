@@ -35,7 +35,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 	
 	
@@ -101,7 +101,8 @@ func item_bought(price: int, item: Node) -> void:
 
 func start_game_pressed() -> void:
 	$StartGameButton.disabled = true
-	
+
+	UISounds.play("transition")
 	UISounds.stop_music()
 	var tween := create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, 0.25)

@@ -18,7 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 UISounds="*res://Scripts/Audio/UISounds.gd"
-GameData="*uid://bl8fkpldug0s4"
+GameData="*res://Scripts/Components (Data)/GameData.gd"
 
 [display]
 
