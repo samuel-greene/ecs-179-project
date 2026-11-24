@@ -115,32 +115,32 @@ func _draw() -> void:
 		
 		
 		
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			var space_state = get_world_2d().direct_space_state
+# Collect the coin when the mouse hovers over it (once it has landed).
+func _physics_process(_delta: float) -> void:
+	if _landed and not _collected and _is_mouse_over():
+		GameData.currency += coin_value
+		collect_coin()
 
-			var mouse = PhysicsPointQueryParameters2D.new()
-			mouse.position = get_global_mouse_position()
-			mouse.collide_with_areas = true
-			mouse.collide_with_bodies = false
 
-			var results = space_state.intersect_point(mouse)
+func _is_mouse_over() -> bool:
+	var query := PhysicsPointQueryParameters2D.new()
+	query.position = get_global_mouse_position()
+	query.collide_with_areas = true
+	query.collide_with_bodies = false
 
-			for result in results:
+	for result in get_world_2d().direct_space_state.intersect_point(query):
+		if result["collider"] == self:
+			return true
+	return false
 
-				if result["collider"] == self:
-					GameData.currency += coin_value
-					collect_coin()
-					return
-					
 
 func collect_coin() -> void:
 	if _collected:
 		return
 
 	_collected = true
-	set_process_input(false)
+	UISounds.play("coin_pickup", 0.08)
+	set_physics_process(false)
 	_collision.set_deferred("disabled", true)
 
 	var tween = create_tween()
