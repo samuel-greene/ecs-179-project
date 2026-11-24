@@ -1,6 +1,7 @@
 extends Control
 
 const SHOP_ITEM = preload("res://Scenes/ShopItem.tscn")
+const FRIENDLY_V1_ITEM = preload("res://Scenes/Friendlies/Friend_v1.tscn")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -19,8 +20,7 @@ func _ready() -> void:
 	$ShopLayout/Categories/UpgradesButton.set_meta("ui_sound", "tab")
 	
 	#test items
-	add_item("Alien Test Item"," ", 50, preload("res://Sprites/alien_placeholder.png"), 0)
-	add_item("Friendly Test Item"," ", 100, preload("res://Sprites/friendly_placeholder.png"), 0)
+	add_item("Friendly V1","Adds Another Friendly", 50, preload("res://Sprites/friendly_placeholder.png"), 0)
 	
 	# test upgrade
 	add_item("Mouse Upgrade","Adds +1 Damage To Your Mouse Click", 100, preload("res://Sprites/mouseIcon.png"), 1)
@@ -90,6 +90,9 @@ func item_bought(price: int, item: Node) -> void:
 		_float_text_at_currency("-" + str(price), Color(1.0, 0.85, 0.2))
 		if item.item_name == "Mouse Upgrade":
 			Alien.upgrade_mouse_attack()
+			
+		if item.item_name == "Friendly V1":
+			_on_friendly_purchased()
 	else:
 		item.play_fail()
 		UISounds.play("error")
@@ -98,6 +101,7 @@ func item_bought(price: int, item: Node) -> void:
 
 func start_game_pressed() -> void:
 	$StartGameButton.disabled = true
+	
 	UISounds.stop_music()
 	var tween := create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, 0.25)
@@ -161,3 +165,6 @@ func _pulse_start_button() -> void:
 func _on_coin_collected(value: int):
 	GameData.currency += value
 	update_currency()
+	
+func _on_friendly_purchased():
+	GameData.friendly_count += 1

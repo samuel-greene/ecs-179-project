@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dp84mn6dblw4k" path="res://Scenes/Enemies/Heavy_Alien_v1.tscn" id="5_3gnqe"]
 [ext_resource type="PackedScene" uid="uid://t4oufugppriw" path="res://Scenes/Enemies/Fast_Alien_v1.tscn" id="6_gt16y"]
 [ext_resource type="PackedScene" uid="uid://rodpt20um276" path="res://Scenes/Enemies/Gun_Alien_v1.tscn" id="7_20f6w"]
+[ext_resource type="Script" uid="uid://njwejexyweh0" path="res://Scripts/Core/FriendlySpawner.gd" id="8_w4764"]
 
 [node name="BattleScene" type="Node2D" unique_id=61709342]
 
@@ -33,3 +34,7 @@ position = Vector2(345, -154)
 
 [node name="Enemy5" parent="." unique_id=726009869 instance=ExtResource("7_20f6w")]
 position = Vector2(-483, 3)
+
+[node name="FriendlySpawner" type="Marker2D" parent="." unique_id=953550948]
+position = Vector2(197, -176)
+script = ExtResource("8_w4764")
