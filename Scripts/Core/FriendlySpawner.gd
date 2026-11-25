@@ -17,12 +17,7 @@ func _ready():
 	if GameData.friendly_count > 1:
 		UISounds.play("friendly_spawn", 0.05)
 
-	for i in range(GameData.friendly_count - 1):
-		var friendly = FRIENDLY_V1.instantiate()
-		friendly.name = "PurchasedFriendly_" + str(i + 1)
-		
-		add_child(friendly)
-		friendly.global_position = global_position + _get_spawn_offset(i)
+	
 
 
 # The first friendlies use the preset spots. Once those run out, extras cycle
