@@ -3,11 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://3w84bw7jmt6v" path="res://Scenes/Towers/CoreTower.tscn" id="2_20f6w"]
 [ext_resource type="PackedScene" uid="uid://dlfg0b1j8uyi8" path="res://Scenes/Templates/EnvironmentExample.tscn" id="2_hdvqd"]
 [ext_resource type="PackedScene" uid="uid://vg7n6673hkjq" path="res://Scenes/Enemies/Alien_v1.tscn" id="3_e5vbs"]
-[ext_resource type="PackedScene" uid="uid://d3ws40m8gf6yt" path="res://Scenes/Friendlies/Friend_v1.tscn" id="4_3gnqe"]
 [ext_resource type="PackedScene" uid="uid://dp84mn6dblw4k" path="res://Scenes/Enemies/Heavy_Alien_v1.tscn" id="5_3gnqe"]
 [ext_resource type="PackedScene" uid="uid://t4oufugppriw" path="res://Scenes/Enemies/Fast_Alien_v1.tscn" id="6_gt16y"]
 [ext_resource type="PackedScene" uid="uid://rodpt20um276" path="res://Scenes/Enemies/Gun_Alien_v1.tscn" id="7_20f6w"]
-[ext_resource type="Script" uid="uid://njwejexyweh0" path="res://Scripts/Core/FriendlySpawner.gd" id="8_w4764"]
+[ext_resource type="Script" uid="uid://bgd6qt3nwwxl7" path="res://Scripts/Core/FriendlyPlacer.gd" id="8_ed262"]
 [ext_resource type="PackedScene" uid="uid://dx7bxtge3f0eg" path="res://Scenes/CoinCounter.tscn" id="9_coins"]
 
 [node name="BattleScene" type="Node2D" unique_id=61709342]
@@ -21,9 +20,6 @@
 [node name="Enemy" parent="." unique_id=1763832684 instance=ExtResource("3_e5vbs")]
 position = Vector2(-395, -187)
 
-[node name="Friendly" parent="." unique_id=1658742211 instance=ExtResource("4_3gnqe")]
-position = Vector2(3, -200)
-
 [node name="Enemy4" parent="." unique_id=741873044 instance=ExtResource("6_gt16y")]
 position = Vector2(-499, 242)
 
@@ -36,9 +32,17 @@ position = Vector2(345, -154)
 [node name="Enemy5" parent="." unique_id=726009869 instance=ExtResource("7_20f6w")]
 position = Vector2(-483, 3)
 
-[node name="FriendlySpawner" type="Marker2D" parent="." unique_id=953550948]
+[node name="FriendlyPlacer" type="Node2D" parent="." unique_id=1519136925]
 position = Vector2(197, -176)
-script = ExtResource("8_w4764")
+script = ExtResource("8_ed262")
+
+[node name="FriendlyCounter" type="Label" parent="." unique_id=2019165895]
+offset_left = 293.0
+offset_top = -323.0
+offset_right = 570.0
+offset_bottom = -294.0
+text = "Friendlies remaining: "
+horizontal_alignment = 2
 
 [node name="HUD" type="CanvasLayer" parent="."]
 

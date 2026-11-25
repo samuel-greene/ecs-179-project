@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cilrgt54i4ppi" path="res://Sprites/coin.png" id="2_coin"]
 
 [node name="CoinCounter" type="HBoxContainer"]
+process_mode = 3
 offset_left = 16.0
 offset_top = 16.0
 theme_override_constants/separation = 8
