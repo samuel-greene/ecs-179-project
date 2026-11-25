@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://3w84bw7jmt6v"]
 
 [ext_resource type="Script" uid="uid://bee47e8dmchrn" path="res://Scripts/Core/CoreTower.gd" id="1_g3017"]
-[ext_resource type="Texture2D" uid="uid://b3llpb6qh3uax" path="res://icon.svg" id="2_8ld7m"]
+[ext_resource type="Texture2D" uid="uid://dnbn4kfo60osw" path="res://Sprites/house.png" id="2_8ld7m"]
 [ext_resource type="Script" uid="uid://2ot2gk4ce1sq" path="res://Scripts/Components (Data)/HealthComponent.gd" id="3_l57f0"]
 [ext_resource type="Script" uid="uid://cc45cl32kgryo" path="res://Scripts/Core/RangeAttack.gd" id="4_8d86o"]
 [ext_resource type="PackedScene" uid="uid://dy6kwk5r8k528" path="res://Scenes/Templates/ProjectileExample.tscn" id="5_uksx3"]
@@ -16,6 +16,7 @@ attack = NodePath("RangeAttack")
 metadata/_custom_type_script = "uid://443yjrotjii5"
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=987712020]
+scale = Vector2(5, 5)
 texture = ExtResource("2_8ld7m")
 script = ExtResource("6_jolt")
 flip_with_movement = false
@@ -36,6 +37,7 @@ shape = SubResource("RectangleShape2D_h782m")
 [node name="RangeAttack" type="Node2D" parent="." unique_id=1896199046]
 script = ExtResource("4_8d86o")
 projectile = ExtResource("5_uksx3")
+muzzle_distance = 70.0
 target_group = &"enemies"
 metadata/_custom_type_script = "uid://cc45cl32kgryo"
 

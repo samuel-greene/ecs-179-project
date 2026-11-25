@@ -140,6 +140,8 @@ func collect_coin() -> void:
 
 	_collected = true
 	UISounds.play("coin_pickup", 0.08)
+	Effects.popup_text(global_position + Vector2(0.0, -24.0), "+" + str(coin_value), Color(1.0, 0.79, 0.2))
+	Effects.burst(global_position, Color(1.0, 0.79, 0.2), 6, 70.0)
 	set_physics_process(false)
 	_collision.set_deferred("disabled", true)
 

@@ -3,6 +3,8 @@ class_name RangeAttack
 
 @export var projectile_speed: float = 1000.0
 @export var projectile: PackedScene
+# how far from the attacker's centre the muzzle flash appears
+@export var muzzle_distance: float = 40.0
 
 
 func _init() -> void:
@@ -35,7 +37,9 @@ func _perform_attack(target: Node2D) -> bool:
 	new_projectile.speed = projectile_speed
 	new_projectile.damage = damage
 	new_projectile.target_group = target_group
-	new_projectile.fire(global_position.direction_to(aim_point))
+	var direction := global_position.direction_to(aim_point)
+	new_projectile.fire(direction)
+	Effects.flash(global_position + direction * muzzle_distance, Color(1.0, 0.85, 0.3))
 	UISounds.play("shot", 0.1)
 	
 	print("GUN: Fired projectile at ", target.name)

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://7hx6xo0lyp0b"]
 
 [ext_resource type="Script" uid="uid://dld8y1bo5s1by" path="res://Scripts/Components (Data)/Shop.gd" id="1_kjfcx"]
+[ext_resource type="PackedScene" uid="uid://dx7bxtge3f0eg" path="res://Scenes/CoinCounter.tscn" id="2_coins"]
 
 [node name="Shop" type="Control" unique_id=756572613]
 layout_mode = 3
@@ -34,15 +35,6 @@ layout_mode = 2
 [node name="ShopTitle" type="Label" parent="ShopLayout/header" unique_id=1365025145]
 layout_mode = 2
 text = "Shop"
-
-[node name="VSeparator" type="VSeparator" parent="ShopLayout/header" unique_id=591788249]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 2
-
-[node name="Currency" type="Label" parent="ShopLayout/header" unique_id=1965105472]
-layout_mode = 2
-text = "Currency"
-horizontal_alignment = 2
 
 [node name="HSeparator" type="HSeparator" parent="ShopLayout" unique_id=1250776315]
 layout_mode = 2
@@ -79,3 +71,10 @@ offset_top = 606.0
 offset_right = 1141.0
 offset_bottom = 637.0
 text = "Begin Game"
+
+[node name="CoinCounter" parent="." instance=ExtResource("2_coins")]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 99.0
+offset_bottom = 47.0
