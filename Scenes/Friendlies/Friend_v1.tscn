@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d3ws40m8gf6yt"]
 
 [ext_resource type="Script" uid="uid://df8o2r7x5qjht" path="res://Scripts/Core/Friendly.gd" id="1_mwjnv"]
-[ext_resource type="Texture2D" uid="uid://cqn6tm21e6rqv" path="res://Sprites/friendly_placeholder.png" id="2_w2jfi"]
+[ext_resource type="Texture2D" uid="uid://c4d5tpi783n4p" path="res://Sprites/friendly.png" id="2_w2jfi"]
 [ext_resource type="Script" uid="uid://2ot2gk4ce1sq" path="res://Scripts/Components (Data)/HealthComponent.gd" id="3_lunqh"]
 [ext_resource type="Script" uid="uid://ba8d1dwhtisd8" path="res://Scripts/Visuals/SpriteAnimator.gd" id="3_qg8vl"]
 [ext_resource type="PackedScene" uid="uid://dsy2roe5bpc" path="res://Scenes/DamageNumbers.tscn" id="4_1eiql"]
@@ -16,7 +16,7 @@ attack = NodePath("MeleeAttack")
 metadata/_custom_type_script = "uid://df8o2r7x5qjht"
 
 [node name="Icon" type="Sprite2D" parent="." unique_id=987712020]
-scale = Vector2(0.15, 0.15)
+scale = Vector2(5, 5)
 texture = ExtResource("2_w2jfi")
 script = ExtResource("3_qg8vl")
 
@@ -27,7 +27,6 @@ damage_number_scene = ExtResource("4_1eiql")
 metadata/_custom_type_script = "uid://2ot2gk4ce1sq"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=983849442]
-position = Vector2(-6, 0)
 shape = SubResource("CircleShape2D_omjkn")
 
 [node name="MeleeAttack" type="Node2D" parent="." unique_id=1493734982]
@@ -40,8 +39,8 @@ one_shot = true
 
 [node name="FriendlyProgressBar" type="ProgressBar" parent="." unique_id=635382409]
 modulate = Color(0, 0.63553035, 0.21960634, 1)
-offset_left = -26.0
+offset_left = -20.0
 offset_top = -52.0
-offset_right = 14.0
+offset_right = 20.0
 offset_bottom = -48.0
 show_percentage = false

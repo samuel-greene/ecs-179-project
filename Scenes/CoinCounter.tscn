@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://dx7bxtge3f0eg"]
+
+[ext_resource type="Script" uid="uid://uhtkl2rbevva" path="res://Scripts/Visuals/CoinCounter.gd" id="1_counter"]
+[ext_resource type="Texture2D" uid="uid://cilrgt54i4ppi" path="res://Sprites/coin.png" id="2_coin"]
+
+[node name="CoinCounter" type="HBoxContainer"]
+process_mode = 3
+offset_left = 16.0
+offset_top = 16.0
+theme_override_constants/separation = 8
+script = ExtResource("1_counter")
+
+[node name="Icon" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(27, 27)
+layout_mode = 2
+texture = ExtResource("2_coin")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Count" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 24
+text = "0"

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dy6kwk5r8k528"]
 
-[ext_resource type="Texture2D" uid="uid://b3llpb6qh3uax" path="res://icon.svg" id="1_16n6j"]
+[ext_resource type="Texture2D" uid="uid://nl8bbpvt5g2v" path="res://Sprites/projectile.png" id="1_16n6j"]
 [ext_resource type="Script" uid="uid://de1slt1yab0fq" path="res://Scripts/Core/Projectile.gd" id="1_u0tbp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_e0h4d"]
@@ -13,5 +13,5 @@ metadata/_custom_type_script = "uid://de1slt1yab0fq"
 shape = SubResource("CircleShape2D_e0h4d")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=322164279]
-scale = Vector2(0.14, 0.14)
+scale = Vector2(5, 5)
 texture = ExtResource("1_16n6j")

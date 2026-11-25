@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://t4oufugppriw" path="res://Scenes/Enemies/Fast_Alien_v1.tscn" id="6_gt16y"]
 [ext_resource type="PackedScene" uid="uid://rodpt20um276" path="res://Scenes/Enemies/Gun_Alien_v1.tscn" id="7_20f6w"]
 [ext_resource type="Script" uid="uid://bgd6qt3nwwxl7" path="res://Scripts/Core/FriendlyPlacer.gd" id="8_ed262"]
+[ext_resource type="PackedScene" uid="uid://dx7bxtge3f0eg" path="res://Scenes/CoinCounter.tscn" id="9_coins"]
 
 [node name="BattleScene" type="Node2D" unique_id=61709342]
 
@@ -42,3 +43,7 @@ offset_right = 570.0
 offset_bottom = -294.0
 text = "Friendlies remaining: "
 horizontal_alignment = 2
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="CoinCounter" parent="HUD" instance=ExtResource("9_coins")]

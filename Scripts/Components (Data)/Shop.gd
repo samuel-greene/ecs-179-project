@@ -20,12 +20,11 @@ func _ready() -> void:
 	$ShopLayout/Categories/UpgradesButton.set_meta("ui_sound", "tab")
 	
 	#test items
-	add_item("Friendly V1","Adds Another Friendly", 50, preload("res://Sprites/friendly_placeholder.png"), 0)
+	add_item("Friendly V1","Adds Another Friendly", 50, preload("res://Sprites/friendly.png"), 0)
 	
 	# test upgrade
 	add_item("Mouse Upgrade","Adds +1 Damage To Your Mouse Click", 100, preload("res://Sprites/mouseIcon.png"), 1)
-	
-	update_currency()
+
 	_pulse_start_button()
 	UISounds.play_music()
 	show()
@@ -39,10 +38,9 @@ func _process(_delta: float) -> void:
 	pass
 	
 	
-# open shop should be called every time the shop is opened, updates the user's number of coins
+# open shop should be called every time the shop is opened
 func open_shop():
 	modulate.a = 1.0
-	update_currency()
 	show()
 	
 # this function adds a new item to the shop given a name, a description, a price, and 
@@ -54,12 +52,8 @@ func add_item(item_name: String, item_description: String, price: int, icon: Tex
 	item.setup(item_name, item_description, price, icon, item_type)
 	# bind(item) passes the card along so we can animate it on success/failure
 	item.buy_pressed.connect(item_bought.bind(item))
-	
-# updates the number of coins the user has
-func update_currency():
-	$ShopLayout/header/Currency.text = str(GameData.currency) + " Coins"
-	
-	
+
+
 # controls which items are visible.
 func filter_items(type: int) -> void:
 	var shown := 0
@@ -82,9 +76,8 @@ func items_button_pressed() -> void:
 	
 func item_bought(price: int, item: Node) -> void:
 	if GameData.currency >= price:
-		var old_value := GameData.currency
 		GameData.currency -= price
-		animate_currency(old_value, GameData.currency)
+
 		item.play_success(price)
 		UISounds.play("buy")
 		_float_text_at_currency("-" + str(price), Color(1.0, 0.85, 0.2))
@@ -114,24 +107,9 @@ func start_game_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/battle_scene.tscn")
 
 
-# counts the coin label up/down and gives it a little bounce
-func animate_currency(from_value: int, to_value: int) -> void:
-	var label: Label = $ShopLayout/header/Currency
-	label.pivot_offset = label.size / 2.0
-	label.scale = Vector2(1.25, 1.25)
-	create_tween().tween_property(label, "scale", Vector2.ONE, 0.3) \
-		.set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-
-	var count := create_tween()
-	count.tween_method(func(value: float) -> void:
-		label.text = str(int(round(value))) + " Coins",
-		float(from_value), float(to_value), 0.4) \
-		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-
-
 # small floating message that appears next to the coin counter and drifts down as it fades
 func _float_text_at_currency(text: String, color: Color) -> void:
-	var currency_label: Label = $ShopLayout/header/Currency
+	var currency_label: Control = $CoinCounter
 	var label := Label.new()
 	label.text = text
 	label.top_level = true  # containers ignore top-level nodes, so it stays where we put it
@@ -165,7 +143,6 @@ func _pulse_start_button() -> void:
 
 func _on_coin_collected(value: int):
 	GameData.currency += value
-	update_currency()
 	
 func _on_friendly_purchased():
 	GameData.friendly_count += 1

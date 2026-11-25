@@ -6,30 +6,40 @@ A Godot 2D combat prototype built from reusable scenes. Friendly units chase ene
 
 1. Open the project in Godot. `project.godot` currently declares **Godot 4.7** and the **Forward Plus** renderer; use a matching editor version to avoid compatibility surprises.
 2. In Godot's Project Manager, choose **Import** and select `project.godot`. Let the editor finish importing resources.
-3. Press **F6** with `Scenes/battle_scene.tscn` open to run the example battle, or **F5** to run the configured main scene.
-4. The battle plays automatically. There are no player controls, menus, wave spawning, or victory/defeat screens yet. Stop and rerun it to reset.
+3. Press **F5** to start from the shop (the main scene), or **F6** with `Scenes/battle_scene.tscn` open to jump straight into a battle.
+4. In the shop, spend coins on friendlies and upgrades, then press **Begin Game**. In battle, click aliens to attack them and hover over dropped coins to collect them. When the house (core tower) is destroyed, the game returns to the shop.
 
-The sample battle contains one enemy, one friendly, one tower, a background, and a camera. Watch Godot's Output and Debugger panels while experimenting; health changes and deaths are printed to Output. If Godot asks for a main scene, select `Scenes/battle_scene.tscn`.
+The battle has hand-placed aliens (basic, fast, heavy and gun), a friendly plus any you bought, the house, a lawn background and a coin counter. There is no wave spawning or win condition yet.
 
 ## Where things live
 
 ```text
 project.godot                  Project settings and main-scene reference
 Scenes/
-  battle_scene.tscn            Playable example and layout starting point
+  Shop.tscn                    Main scene: shop between battles
+  battle_scene.tscn            The battle
+  CoinCounter.tscn             Coin count shown in the shop and battle
+  Enemies/                     Alien variants (basic, fast, heavy, gun)
+  Friendlies/                  Friendly units
+  Towers/CoreTower.tscn        The house you defend
   Templates/
     EnemyExample.tscn          Moving melee enemy
-    FriendlyExample.tscn      Moving melee ally
-    TowerExample.tscn         Stationary ranged ally
-    ProjectileExample.tscn    Projectile used by the example tower
-    EnvironmentExample.tscn   Flat-color background
+    FriendlyExample.tscn       Moving melee ally
+    TowerExample.tscn          Stationary ranged ally
+    ProjectileExample.tscn     Projectile fired by the house and gun alien
+    EnvironmentExample.tscn    Lawn background
+    Coin.tscn                  Coin dropped by aliens
 Scripts/
   Core/                       Movement, targeting, and attack behavior
-  Components (Data)/          HealthComponent.gd (class name: Health)
+  Components (Data)/          Health, shop and game data
+  Visuals/                    Sprite animation, coins and effects
+  Audio/UISounds.gd           All sound effects and music (autoload)
   Utils/NodeUtils.gd          Nearest-node lookup by group
+Sprites/                      Game art
+Sounds/                       Sound effects and music
 ```
 
-`icon.svg` is the placeholder artwork used throughout the examples. There is no additional art pack or external dependency to install.
+The template scenes in `Scenes/Templates/` still use `icon.svg` as placeholder art.
 
 ## Use the templates
 
@@ -107,20 +117,21 @@ Collision shapes are resources and may be shared between instances or copies. Be
 
 The attack supplies each projectile's damage, speed, and target group when it fires. Those values are not exported on the projectile scene. Projectiles travel in a straight line toward a predicted intercept; they do not home after firing or rotate their sprite automatically. A missed projectile currently keeps traveling indefinitely, so add a lifetime or off-screen cleanup in `Projectile.gd` before building large or long-running battles.
 
-## Replace the placeholder art and improve presentation
+## Art and presentation
 
-### Sprites and silhouettes
+### Sprites
 
-1. Create an `Assets/` folder and add your textures. Let Godot import them, then assign a texture to the example's `Icon` node or the projectile's `Sprite2D`.
-2. Adjust the **sprite child's** scale and position to get the intended visual size. The friendly and enemy icons currently use scale `0.3`; the projectile uses `0.14`; the tower uses the icon's original size. New artwork may need different scales.
-3. Fit the collision shape to the gameplay footprint. Changing a sprite's scale does not resize its sibling collider. Prefer adjusting the sprite and shape separately over scaling the entire physics body.
-4. Give allies, enemies, towers, and projectiles distinct silhouettes and colors. For a quick pass, use each sprite's **Self Modulate** property to tint the existing icon.
+The game's art follows the style of the original friendly: small sprites, black outlines, flat colors with dark left and bottom edges. Every sprite is drawn at scale `5` and the project uses **Nearest** texture filtering, so pixels stay sharp.
 
-Keep a consistent art style and pixel density. For pixel art, set texture filtering to **Nearest** in the relevant CanvasItem or project settings; for smooth artwork, choose filtering that suits the assets. Keep projectiles visible against the background and avoid effects that hide unit positions.
+When adding or editing art:
+
+1. Draw at the same small size and keep the black outlines and shading, then use scale `5` on the sprite node.
+2. Fit the collision shape to the gameplay footprint. Changing a sprite's scale does not resize its sibling collider.
+3. Give each unit a distinct silhouette and color so it reads at a glance.
 
 ### Background, camera, and draw order
 
-- `EnvironmentExample.tscn` contains a `ColorRect` covering a 1500 × 1000 area centered on its origin. Change its color for a quick palette adjustment, or add a background sprite or `TileMapLayer` for scenery. Its root uses `z_index = -1` to draw behind the units.
+- `EnvironmentExample.tscn` contains a `Lawn` sprite that repeats `Sprites/lawn.png` over a 2400 × 1600 area centered on its origin. Its root uses `z_index = -1` to draw behind the units.
 - Decorative scenery does not block movement automatically. Add physics bodies and collision shapes where you want obstacles. Current units move directly toward targets; pathfinding around obstacles requires additional code.
 - Use the `Camera2D` in `battle_scene.tscn` to frame the action. Adjust its position and zoom after laying out the battle, and check the result at your intended window size. The existing camera has no follow script.
 - For a top-down look, place appropriate world objects under a parent with **Y Sort Enabled**, and position their origins near their feet. Use explicit `z_index` values for backgrounds and effects where needed.

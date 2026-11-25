@@ -33,4 +33,5 @@ func handle_collision(target: Node2D) -> void:
 		return
 
 	health.take_damage(damage)
+	Effects.burst(global_position, Color.WHITE, 5, 80.0)
 	queue_free()

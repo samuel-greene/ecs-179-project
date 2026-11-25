@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2w6svwfw7j3d"
-path="res://.godot/imported/coin_placeholder.png-298e1d3b43688f44450c95b95864e192.ctex"
+uid="uid://b4g7daxalrnr8"
+path="res://.godot/imported/alien_fast.png-7eedf831bcadfb71528a1640b0c637a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/coin_placeholder.png"
-dest_files=["res://.godot/imported/coin_placeholder.png-298e1d3b43688f44450c95b95864e192.ctex"]
+source_file="res://Sprites/Aliens/alien_fast.png"
+dest_files=["res://.godot/imported/alien_fast.png-7eedf831bcadfb71528a1640b0c637a5.ctex"]
 
 [params]
 

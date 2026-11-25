@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnjn3w86jdci0"
-path="res://.godot/imported/ranged_alien.png-c480b2db2de752caa3d20aae49245fba.ctex"
+uid="uid://c6y5vlcpc2u37"
+path="res://.godot/imported/alien_heavy.png-d78ea29f4bd57e0fc63bbf5ad65c454d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/ranged_alien.png"
-dest_files=["res://.godot/imported/ranged_alien.png-c480b2db2de752caa3d20aae49245fba.ctex"]
+source_file="res://Sprites/Aliens/alien_heavy.png"
+dest_files=["res://.godot/imported/alien_heavy.png-d78ea29f4bd57e0fc63bbf5ad65c454d.ctex"]
 
 [params]
 
